@@ -10,21 +10,18 @@
   PORT = 6123;
 
   listenOnSomePort = function(app, startPort) {
-    var _results;
-    _results = [];
     while (true) {
       try {
         app.listen(startPort);
         return startPort;
       } catch (err) {
         if (err.code === "EADDRINUSE") {
-          _results.push(startPort++);
+          startPort++;
         } else {
           throw err;
         }
       }
     }
-    return _results;
   };
 
   phanta = [];
@@ -95,7 +92,7 @@
         phantom = conn.remote;
         wrap(phantom);
         phanta.push(phantom);
-        return typeof cb === "function" ? cb(phantom) : void 0;
+        return typeof cb === "function" ? cb(phantom, conn) : void 0;
       });
     }
   };

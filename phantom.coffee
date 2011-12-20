@@ -62,7 +62,7 @@ module.exports =
       phantom = conn.remote
       wrap phantom
       phanta.push phantom
-      cb? phantom
+      cb? phantom, conn
 
 
 
